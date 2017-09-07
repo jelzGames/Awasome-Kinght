@@ -80,7 +80,19 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camara\CamaraFollow.cs" />
     <Compile Include="Assets\Scripts\Camara\MouseScript.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\EbnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyControlAnotherWay.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\FX Scripts\DestroyAfterTime.cs" />
     <Compile Include="Assets\Scripts\FX Scripts\DestroyPointer.cs" />
+    <Compile Include="Assets\Scripts\FX Scripts\FireShield.cs" />
+    <Compile Include="Assets\Scripts\FX Scripts\FireTornadoMove.cs" />
+    <Compile Include="Assets\Scripts\FX Scripts\HealScript.cs" />
+    <Compile Include="Assets\Scripts\FX Scripts\SkillDamage.cs" />
+    <Compile Include="Assets\Scripts\PLayer Script\PLayerAttack.cs" />
+    <Compile Include="Assets\Scripts\PLayer Script\PlayerAttackEffects.cs" />
+    <Compile Include="Assets\Scripts\PLayer Script\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PLayer Script\PlayerMove.cs" />
   </ItemGroup>
   <ItemGroup>
