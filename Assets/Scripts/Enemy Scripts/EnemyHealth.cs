@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour {
    
     public float health = 100f;
 
-    private Image health_Img;
+    public Image health_Img;
 
     public void TakeDamage(float amount)
     {
@@ -27,15 +27,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		if (tag == "Boss")
-        {
-            health_Img = GameObject.Find("Health Foreground Boss").GetComponent<Image>();
-        }
-        else
-        {
-            health_Img = GameObject.Find("Health Foreground").GetComponent<Image>();
-
-        }
+		
     }
 	
 	// Update is called once per frame

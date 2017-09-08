@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EbnemyAttack : MonoBehaviour {
+public class EnemyAttack : MonoBehaviour {
 
     public float damageAmount = 10f;
     private Transform playerTarget;

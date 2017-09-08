@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 468506}
   - component: {fileID: 19836898}
   - component: {fileID: 19945528}
+  - component: {fileID: 114600459646750772}
+  - component: {fileID: 114489469935136336}
   m_Layer: 0
   m_Name: Hit
   m_TagString: Untagged
@@ -20049,3 +20051,31 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 136674}
   m_IsPrefabParent: 1
+--- !u!114 &114489469935136336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca15ed667bcb8d478723b5f377a07fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  radius: 0.5
+  damageCount: 15
+--- !u!114 &114600459646750772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5b9469b1ed10b43a2d2e989f8d9eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 1.5
