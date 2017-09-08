@@ -19,6 +19,8 @@ public class PLayerAttack : MonoBehaviour {
 
     private PlayerMove playerMOve;
 
+    private int attack;
+
 
     // Use this for initialization
     void Start () {
@@ -52,90 +54,46 @@ public class PLayerAttack : MonoBehaviour {
                 playerMOve.FinnishedMovement = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || attack == 1)
         {
-            
-
-            if (playerMOve.FinnishedMovement && fadeImages[0] != 1 && canAttack)
-            {
-                fadeImages[0] = 1;
-                anim.SetInteger("Atk", 1);
-
-                playerMOve.TargetPosition = transform.position;
-                RemoveCursorPoint();
-            }
+            attack = 1;
+            Attack(attack);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || attack == 2)
         {
-           
-            if (playerMOve.FinnishedMovement && fadeImages[1] != 1 && canAttack)
-            {
-                fadeImages[1] = 1;
-                anim.SetInteger("Atk", 2);
-
-                playerMOve.TargetPosition = transform.position;
-                RemoveCursorPoint();
-
-            }
+            attack = 2;
+            Attack(attack);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || attack == 3)
         {
-            
-            if (playerMOve.FinnishedMovement && fadeImages[2] != 1 && canAttack)
-            {
-                fadeImages[2] = 1;
-                anim.SetInteger("Atk", 3);
-
-                playerMOve.TargetPosition = transform.position;
-                RemoveCursorPoint();
-
-            }
+            attack = 3;
+            Attack(attack);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4) || attack == 4)
         {
-           
-            if (playerMOve.FinnishedMovement && fadeImages[3] != 1 && canAttack)
-            {
-                fadeImages[3] = 1;
-                anim.SetInteger("Atk", 4);
-
-                playerMOve.TargetPosition = transform.position;
-                RemoveCursorPoint();
-
-            }
+            attack = 4;
+            Attack(attack);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5) || attack == 5)
         {
-            
-            if (playerMOve.FinnishedMovement && fadeImages[4] != 1 && canAttack)
-            {
-                fadeImages[4] = 1;
-                anim.SetInteger("Atk", 5);
-
-                playerMOve.TargetPosition = transform.position;
-                RemoveCursorPoint();
-
-            }
+            attack = 5;
+            Attack(attack);
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetKeyDown(KeyCode.Alpha6) || attack == 6)
         {
-            
-            if (playerMOve.FinnishedMovement && fadeImages[5] != 1 && canAttack)
-            {
-                fadeImages[5] = 1;
-                anim.SetInteger("Atk", 6);
-
-                playerMOve.TargetPosition = transform.position;
-                RemoveCursorPoint();
-
-            }
+            attack = 6;
+            Attack(attack);
         }
         else
         {
-            anim.SetInteger("Atk", 0);
+            anim.SetInteger("Atk", attack);
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        //attack = 0;
+
+        //if (Input.GetKey(KeyCode.Space))
+
+        if (Input.GetMouseButton(0))
         {
             Vector3 targetPos = Vector3.zero;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -152,6 +110,27 @@ public class PLayerAttack : MonoBehaviour {
             }
 
         }
+    }
+
+    public void PushAttack(int attack)
+    {
+        this.attack = attack;
+    }
+
+    public void Attack(int attack)
+    {
+        int index = attack - 1;
+
+        if (playerMOve.FinnishedMovement && fadeImages[index] != 1 && canAttack)
+        {
+            fadeImages[index] = 1;
+            anim.SetInteger("Atk", attack);
+
+            playerMOve.TargetPosition = transform.position;
+            RemoveCursorPoint();
+
+        }
+        this.attack = 0;
     }
 
     void CheckToFade()
@@ -228,7 +207,7 @@ public class PLayerAttack : MonoBehaviour {
         return faded;
     }
 
-    void RemoveCursorPoint()
+    public void RemoveCursorPoint()
     {
         GameObject cursorObj = GameObject.FindGameObjectWithTag("Cursor");
         if (cursorObj)

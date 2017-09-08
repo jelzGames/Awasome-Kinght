@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseScript : MonoBehaviour {
 
@@ -10,10 +11,11 @@ public class MouseScript : MonoBehaviour {
 
     public GameObject mousePoint;
     private GameObject instatiatedMouse;
-    
 
-	// Use this for initialization
-	void Start () {
+    public EventSystem eventSystem;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -21,7 +23,7 @@ public class MouseScript : MonoBehaviour {
 	void Update () {
         Cursor.SetCursor(cursorTexture, hotSpot, mode);
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !eventSystem.IsPointerOverGameObject())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

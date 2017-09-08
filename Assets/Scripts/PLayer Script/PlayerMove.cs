@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -16,6 +17,8 @@ public class PlayerMove : MonoBehaviour {
     private float player_ToPointDistance;
     private float gravity = 9.8f;
     private float height;
+
+    public EventSystem eventSystem;
 
     private void Awake()
     {
@@ -33,7 +36,6 @@ public class PlayerMove : MonoBehaviour {
         //MoveThePlayer();
         //charController.Move(player_Move);
 
-       
         CalculateHeight();
         CheckIfFinishedMovement();
     }
@@ -77,8 +79,9 @@ public class PlayerMove : MonoBehaviour {
 
     void MoveThePlayer()
     {
-        if (Input.GetMouseButtonDown (0)) {
 
+        if (Input.GetMouseButtonUp (0) && !eventSystem.IsPointerOverGameObject()) {
+        
             // calculate where need to go
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
