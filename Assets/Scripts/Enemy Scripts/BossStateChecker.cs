@@ -21,14 +21,22 @@ public class BossStateChecker : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         bossHealth = GetComponent<EnemyHealth>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        SetState();
-
+        if (!playerTarget)
+        {
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+        }
+        else
+        {
+            SetState();
+        }
     }
 
     void SetState()

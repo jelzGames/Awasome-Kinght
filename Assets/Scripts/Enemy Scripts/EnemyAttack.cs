@@ -14,24 +14,33 @@ public class EnemyAttack : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
 
-        playerHealth = playerTarget.GetComponent<PlayerHealth>();
-
+    
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (finnishedAttack)
+        if (!playerTarget)
         {
-            DealDamage(CheckIsAttacking());
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+                playerHealth = playerTarget.GetComponent<PlayerHealth>();
+            }
         }
         else
         {
-            if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            if (finnishedAttack)
             {
-                finnishedAttack = true;
+                DealDamage(CheckIsAttacking());
+            }
+            else
+            {
+                if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    finnishedAttack = true;
+                }
             }
         }
 	}

@@ -50,7 +50,6 @@ public class EnemyController : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         navAgent = GetComponent<NavMeshAgent>();
         charController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
@@ -64,41 +63,50 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-        if (enemyHealth.health <= 0f)
+        if (!playerTarget)
         {
-            enemyCurrentState = EnemyState.DEATH;
-        }
-
-        if (enemyCurrentState != EnemyState.DEATH)
-        {
-            enemyCurrentState = SetEnemyState(enemyCurrentState, enemyLaststate, enemyToPlayerDistance);
-
-            if (finnished_Mmovement)
+            if (GameObject.FindGameObjectWithTag("Player"))
             {
-                GetStateControl(enemyCurrentState);
-            }
-            else
-            {
-                if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-                {
-                    finnished_Mmovement = true;
-                }
-                else if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsTag("Atk1") ||
-                    anim.GetCurrentAnimatorStateInfo(0).IsTag("Atk2"))
-                {
-                    anim.SetInteger("Atk", 0);
-                }
+                playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
             }
         }
         else
         {
-            anim.SetBool("Death", true);
-            charController.enabled = false;
-            navAgent.enabled = false;
-            if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+            if (enemyHealth.health <= 0f)
             {
-                Destroy(gameObject, 2f);
+                enemyCurrentState = EnemyState.DEATH;
+            }
+
+            if (enemyCurrentState != EnemyState.DEATH)
+            {
+                enemyCurrentState = SetEnemyState(enemyCurrentState, enemyLaststate, enemyToPlayerDistance);
+
+                if (finnished_Mmovement)
+                {
+                    GetStateControl(enemyCurrentState);
+                }
+                else
+                {
+                    if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                    {
+                        finnished_Mmovement = true;
+                    }
+                    else if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsTag("Atk1") ||
+                        anim.GetCurrentAnimatorStateInfo(0).IsTag("Atk2"))
+                    {
+                        anim.SetInteger("Atk", 0);
+                    }
+                }
+            }
+            else
+            {
+                anim.SetBool("Death", true);
+                charController.enabled = false;
+                navAgent.enabled = false;
+                if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                {
+                    Destroy(gameObject, 2f);
+                }
             }
         }
 

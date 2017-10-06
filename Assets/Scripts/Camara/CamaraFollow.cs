@@ -17,25 +17,33 @@ public class CamaraFollow : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-		
+        
 	}
 
     
     // Update is called once per frame
     void Update () {
-        target_Height = player.position.y + follow_Height;
-        curren_Rotation = transform.eulerAngles.y;
-        current_Height = Mathf.Lerp(transform.position.y, target_Height, 0.9f * Time.deltaTime );
+        if (!player)
+        {
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+        }
+        else
+        {
+            target_Height = player.position.y + follow_Height;
+            curren_Rotation = transform.eulerAngles.y;
+            current_Height = Mathf.Lerp(transform.position.y, target_Height, 0.9f * Time.deltaTime);
 
-        Quaternion euler = Quaternion.Euler(0f, curren_Rotation, 0f);
+            Quaternion euler = Quaternion.Euler(0f, curren_Rotation, 0f);
 
-        Vector3 target_Position = player.position - (euler * Vector3.forward) * follow_Distance;
+            Vector3 target_Position = player.position - (euler * Vector3.forward) * follow_Distance;
 
-        target_Position.y = current_Height;
-        transform.position = target_Position;
-        transform.LookAt(player);
+            target_Position.y = current_Height;
+            transform.position = target_Position;
+            transform.LookAt(player);
+        }
 
-	}
+    }
 }

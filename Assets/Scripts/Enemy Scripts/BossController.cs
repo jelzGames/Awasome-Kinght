@@ -17,7 +17,6 @@ public class BossController : MonoBehaviour {
     
 	// Use this for initialization
 	void Awake() {
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         bossStateChecker = GetComponent<BossStateChecker>();
         navAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -26,19 +25,29 @@ public class BossController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (finnishedAttacking)
+        if (!playerTarget)
         {
-            GetStateControl();
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+            }
         }
         else
         {
-            anim.SetInteger("Atk", 0);
-
-            if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            if (finnishedAttacking)
             {
-                finnishedAttacking = true;
+                GetStateControl();
             }
-            
+            else
+            {
+                anim.SetInteger("Atk", 0);
+
+                if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    finnishedAttacking = true;
+                }
+
+            }
         }
 	}
 

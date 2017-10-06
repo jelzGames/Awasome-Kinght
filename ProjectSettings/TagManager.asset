@@ -9,6 +9,13 @@ TagManager:
   - Enemy
   - Boss
   - Cursor
+  - Power1
+  - Power3
+  - Power2
+  - Power4
+  - Power5
+  - Power6
+  - UICamera
   layers:
   - Default
   - TransparentFX

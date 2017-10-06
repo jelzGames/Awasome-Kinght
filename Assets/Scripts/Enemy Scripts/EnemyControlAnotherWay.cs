@@ -25,7 +25,6 @@ public class EnemyControlAnotherWay : MonoBehaviour {
 
     void Awake()
     {
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
         navAgent = GetComponent<NavMeshAgent>();
 
@@ -35,20 +34,30 @@ public class EnemyControlAnotherWay : MonoBehaviour {
 
     void Update()
     {
-        if (enemyHealth.health > 0f)
+        if (!playerTarget)
         {
-            MoveAndAttack();
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+            }
         }
         else
         {
-            anim.SetBool("Death", true);
-            navAgent.enabled = false;
-            if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+
+            if (enemyHealth.health > 0f)
             {
-                Destroy(gameObject, 2f);
+                MoveAndAttack();
+            }
+            else
+            {
+                anim.SetBool("Death", true);
+                navAgent.enabled = false;
+                if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
+                {
+                    Destroy(gameObject, 2f);
+                }
             }
         }
-
 
     }
 

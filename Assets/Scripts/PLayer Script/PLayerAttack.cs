@@ -27,6 +27,14 @@ public class PLayerAttack : MonoBehaviour {
         anim = GetComponent<Animator>();
         playerMOve = GetComponent<PlayerMove>();
 
+        var images = GameObject.FindGameObjectWithTag("UICamera").GetComponentsInChildren<Image>();
+
+        fillWaitImage_1 = images[0];
+        fillWaitImage_2 = images[1];
+        fillWaitImage_3 = images[2];
+        fillWaitImage_4 = images[3];
+        fillWaitImage_5 = images[4];
+        fillWaitImage_6 = images[5];
     }
 	
 	// Update is called once per frame
@@ -96,7 +104,9 @@ public class PLayerAttack : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             Vector3 targetPos = Vector3.zero;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))

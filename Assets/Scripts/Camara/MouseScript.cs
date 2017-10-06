@@ -25,7 +25,8 @@ public class MouseScript : MonoBehaviour {
 
         if (Input.GetMouseButtonUp(0) && !eventSystem.IsPointerOverGameObject())
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray =  GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))

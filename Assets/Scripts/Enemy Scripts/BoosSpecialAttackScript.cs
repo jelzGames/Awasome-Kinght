@@ -11,14 +11,20 @@ public class BoosSpecialAttackScript : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+       
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (!playerTarget)
+        {
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+        }
+    }
 
     void BossFireTornado()
     {

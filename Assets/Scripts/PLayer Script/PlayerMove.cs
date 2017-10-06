@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 
-public class PlayerMove : MonoBehaviour {
+public class PlayerMove : NetworkBehaviour {
 
     private Animator anim;
     private CharacterController charController;
@@ -35,11 +36,26 @@ public class PlayerMove : MonoBehaviour {
 	void Update () {
         //MoveThePlayer();
         //charController.Move(player_Move);
+        if (!isLocalPlayer)
+        {
+            return;
+        }
 
-        CalculateHeight();
-        CheckIfFinishedMovement();
+        if (!eventSystem)
+        {
+            eventSystem = GameObject.FindObjectOfType<EventSystem>();
+        }
+        else
+        {
+            CalculateHeight();
+            CheckIfFinishedMovement();
+        }
     }
 
+    public override void OnStartLocalPlayer()
+    {
+        GetComponentInChildren<Camera>().enabled = true;
+    }
 
     bool IsGround()
     {
@@ -81,10 +97,11 @@ public class PlayerMove : MonoBehaviour {
     {
 
         if (Input.GetMouseButtonUp (0) && !eventSystem.IsPointerOverGameObject()) {
-        
+
             // calculate where need to go
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit;
+            //Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
 				if (hit.collider is TerrainCollider) {

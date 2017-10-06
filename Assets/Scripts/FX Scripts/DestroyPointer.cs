@@ -8,13 +8,26 @@ public class DestroyPointer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (Vector3.Distance(transform.position, player.position) <= 1.1f) {
-            Destroy(gameObject);
+        if (!player)
+        {
+            if (GameObject.FindGameObjectWithTag("Player"))
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+            
         }
-	}
+        else
+        {
+            if (Vector3.Distance(transform.position, player.position) <= 1.1f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+    }
+
 }
