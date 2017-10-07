@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PLayerAttack : MonoBehaviour {
+public class PLayerAttack : NetworkBehaviour {
 
     public Image fillWaitImage_1;
     public Image fillWaitImage_2;
@@ -35,10 +36,16 @@ public class PLayerAttack : MonoBehaviour {
         fillWaitImage_4 = images[3];
         fillWaitImage_5 = images[4];
         fillWaitImage_6 = images[5];
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
 		if (!anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
         {
             canAttack = true;
@@ -103,6 +110,7 @@ public class PLayerAttack : MonoBehaviour {
 
         if (Input.GetMouseButton(0))
         {
+            /*
             Vector3 targetPos = Vector3.zero;
 
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,17 +126,27 @@ public class PLayerAttack : MonoBehaviour {
                 15.0f * Time.deltaTime);
 
             }
-
+            */
         }
     }
 
     public void PushAttack(int attack)
     {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
         this.attack = attack;
     }
 
     public void Attack(int attack)
     {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
         int index = attack - 1;
 
         if (playerMOve.FinnishedMovement && fadeImages[index] != 1 && canAttack)
@@ -219,6 +237,11 @@ public class PLayerAttack : MonoBehaviour {
 
     public void RemoveCursorPoint()
     {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
         GameObject cursorObj = GameObject.FindGameObjectWithTag("Cursor");
         if (cursorObj)
         {

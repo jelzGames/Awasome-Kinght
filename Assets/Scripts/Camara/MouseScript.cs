@@ -21,6 +21,7 @@ public class MouseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         Cursor.SetCursor(cursorTexture, hotSpot, mode);
 
         if (Input.GetMouseButtonUp(0) && !eventSystem.IsPointerOverGameObject())

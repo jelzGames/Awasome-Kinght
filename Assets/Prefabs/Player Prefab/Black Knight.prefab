@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 114741159803790076}
   m_Layer: 9
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: CameraPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -519,6 +519,7 @@ GameObject:
   - component: {fileID: 114675876055933482}
   - component: {fileID: 114354023931116852}
   - component: {fileID: 114151938307298188}
+  - component: {fileID: 114438214102975300}
   m_Layer: 9
   m_Name: Black Knight
   m_TagString: Player
@@ -663,7 +664,7 @@ Transform:
   m_Children:
   - {fileID: 4126985833254920}
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4172637969244220
 Transform:
@@ -703,7 +704,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4218391087626064
 Transform:
@@ -744,7 +745,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4341899061034732
 Transform:
@@ -770,6 +771,7 @@ Transform:
   m_LocalPosition: {x: 1.1805267, y: 0, z: -30.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4358233138052390}
   - {fileID: 4128560034047604}
   - {fileID: 4264532926971556}
   - {fileID: 4945841524810316}
@@ -777,7 +779,6 @@ Transform:
   - {fileID: 4656725095688908}
   - {fileID: 4800811094082414}
   - {fileID: 4371570360360160}
-  - {fileID: 4358233138052390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -787,13 +788,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641650020790370}
-  m_LocalRotation: {x: 0.5567584, y: -0, z: -0, w: 0.83067447}
-  m_LocalPosition: {x: 0.27999997, y: 10.83, z: -4.0600014}
+  m_LocalRotation: {x: 0.47864687, y: 0.01158533, z: 0.009402883, w: 0.8778807}
+  m_LocalPosition: {x: 0.23, y: 9.41, z: -6.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 67.664, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 57.158, y: 3.1020002, z: 2.917}
 --- !u!4 &4364959188236712
 Transform:
   m_ObjectHideFlags: 1
@@ -834,7 +835,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4378842608977964
 Transform:
@@ -931,7 +932,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4668168719009264
 Transform:
@@ -985,7 +986,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4816384159443204
 Transform:
@@ -1053,7 +1054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4357421264288338}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4957291678641420
 Transform:
@@ -2294,6 +2295,25 @@ MonoBehaviour:
     type: 2}
   thunderFX_pREFAB: {fileID: 1164094381172014, guid: d52235af7d56d4f148d6e52c8bc2c348,
     type: 2}
+--- !u!114 &114438214102975300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1817288171565250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95264755094013890}
+  m_ParameterSendBits: 7
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114675876055933482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2503,7 +2523,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1149299122
+  randomSeed: -97840138
   InitialModule:
     serializedVersion: 3
     enabled: 1

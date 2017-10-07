@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : NetworkBehaviour {
 
     public float health = 100f;
     private bool isShielded;
@@ -27,6 +28,11 @@ public class PlayerHealth : MonoBehaviour {
 
     public void TakeDamage(float amount)
     {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
         if (!isShielded)
         {
             health -= amount;
@@ -64,6 +70,11 @@ public class PlayerHealth : MonoBehaviour {
 
     public void HealPlayer(float healAmount)
     {
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
         health += healAmount;
 
         if (health > 100f)

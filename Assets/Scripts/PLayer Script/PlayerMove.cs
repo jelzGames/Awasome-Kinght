@@ -97,7 +97,6 @@ public class PlayerMove : NetworkBehaviour {
     {
 
         if (Input.GetMouseButtonUp (0) && !eventSystem.IsPointerOverGameObject()) {
-
             // calculate where need to go
             //Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
@@ -115,13 +114,13 @@ public class PlayerMove : NetworkBehaviour {
 						
 				}
 			}
-		} // if mouse button down
+ 		} // if mouse button down
 
 		if (canMove) {
-			anim.SetFloat ("Walk", 1.0f);
+ 			anim.SetFloat ("Walk", 1.0f);
 
 			Vector3 target_Temp = new Vector3 (target_Pos.x, transform.position.y, target_Pos.z);
-
+		
 			transform.rotation = Quaternion.Slerp (transform.rotation, 
 				Quaternion.LookRotation (target_Temp - transform.position), 
 				15.0f * Time.deltaTime);
@@ -163,5 +162,6 @@ public class PlayerMove : NetworkBehaviour {
             target_Pos = value;
         }
     }
+
 
 }
