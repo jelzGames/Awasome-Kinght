@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CamaraFollow : MonoBehaviour {
+public class CamaraFollow : NetworkBehaviour {
 
     public float follow_Height = 8f;
     public float follow_Distance = 6f;
@@ -32,7 +33,9 @@ public class CamaraFollow : MonoBehaviour {
         }
         else
         {
-            target_Height = player.position.y + follow_Height;
+	
+            /*
+			target_Height = player.position.y + follow_Height;
             curren_Rotation = transform.eulerAngles.y;
             current_Height = Mathf.Lerp(transform.position.y, target_Height, 0.9f * Time.deltaTime);
 
@@ -42,7 +45,7 @@ public class CamaraFollow : MonoBehaviour {
 
             target_Position.y = current_Height;
             transform.position = target_Position;
-            transform.LookAt(player);
+            transform.LookAt(player);*/
         }
 
     }

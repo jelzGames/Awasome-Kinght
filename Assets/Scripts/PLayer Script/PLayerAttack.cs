@@ -110,11 +110,10 @@ public class PLayerAttack : NetworkBehaviour {
 
         if (Input.GetMouseButton(0))
         {
-            /*
             Vector3 targetPos = Vector3.zero;
 
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
@@ -126,7 +125,6 @@ public class PLayerAttack : NetworkBehaviour {
                 15.0f * Time.deltaTime);
 
             }
-            */
         }
     }
 
@@ -142,6 +140,7 @@ public class PLayerAttack : NetworkBehaviour {
 
     public void Attack(int attack)
     {
+        bool cC = gameObject.GetComponent<NetworkIdentity>().isLocalPlayer;
 		if (!isLocalPlayer)
 		{
 			return;
@@ -237,11 +236,7 @@ public class PLayerAttack : NetworkBehaviour {
 
     public void RemoveCursorPoint()
     {
-		if (!isLocalPlayer)
-		{
-			return;
-		}
-
+        
         GameObject cursorObj = GameObject.FindGameObjectWithTag("Cursor");
         if (cursorObj)
         {

@@ -54,7 +54,7 @@ public class PlayerMove : NetworkBehaviour {
 
     public override void OnStartLocalPlayer()
     {
-        GetComponentInChildren<Camera>().enabled = true;
+        //GetComponentInChildren<Camera>().enabled = true;
     }
 
     bool IsGround()
@@ -98,8 +98,8 @@ public class PlayerMove : NetworkBehaviour {
 
         if (Input.GetMouseButtonUp (0) && !eventSystem.IsPointerOverGameObject()) {
             // calculate where need to go
-            //Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            //Ray ray = GameObject.FindObjectOfType<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
 			if (Physics.Raycast (ray, out hit)) {
@@ -134,8 +134,23 @@ public class PlayerMove : NetworkBehaviour {
 		} else {
 			player_Move.Set (0f, 0f, 0f);
 			anim.SetFloat ("Walk", 0f);
-		}
+        }
 
+
+		float follow_Height = 8f;
+	    float follow_Distance = 6f;
+
+        float target_Height = transform.position.y + follow_Height;
+        float curren_Rotation = Camera.main.transform.eulerAngles.y;
+        float current_Height = Mathf.Lerp(Camera.main.transform.position.y, target_Height, 0.9f * Time.deltaTime);
+
+		Quaternion euler = Quaternion.Euler(0f, curren_Rotation, 0f);
+
+		Vector3 target_Position = transform.position - (euler * Vector3.forward) * follow_Distance;
+
+		target_Position.y = current_Height;
+		Camera.main.transform.position = target_Position;
+        Camera.main.transform.LookAt(transform);
     }
 
 

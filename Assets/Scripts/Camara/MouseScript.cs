@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 
-public class MouseScript : MonoBehaviour {
+
+public class MouseScript : NetworkBehaviour {
 
     public Texture2D cursorTexture;
     private CursorMode mode = CursorMode.ForceSoftware;
@@ -14,6 +16,8 @@ public class MouseScript : MonoBehaviour {
 
     public EventSystem eventSystem;
 
+	private Transform player;
+
     // Use this for initialization
     void Start () {
 		
@@ -21,13 +25,27 @@ public class MouseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+		if (!player)
+		{
+			if (GameObject.FindGameObjectWithTag("Player"))
+			{
+				player = GameObject.FindGameObjectWithTag("Player").transform;
+
+			}
+		}
+
+		if (!player)
+		{
+			return;
+		}
+        	
+
         Cursor.SetCursor(cursorTexture, hotSpot, mode);
 
         if (Input.GetMouseButtonUp(0) && !eventSystem.IsPointerOverGameObject())
         {
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Ray ray =  GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Ray ray =  GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
