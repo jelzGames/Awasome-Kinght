@@ -34,7 +34,7 @@ public class PLayerAttack : NetworkBehaviour {
 		{
             if (image.tag == "Powers")
 			{
-				switch (count)
+                switch (count)
 				{
                     case 0:
                         fillWaitImage_1 = image;
@@ -55,7 +55,7 @@ public class PLayerAttack : NetworkBehaviour {
 						fillWaitImage_6 = image;
 						break;
 			    }
-                image.gameObject.SetActive(false);
+				image.enabled = false;
 
 				count++;
 		    }
@@ -243,9 +243,10 @@ public class PLayerAttack : NetworkBehaviour {
         }
 
         //check if image is enable in gui
-        if (!fadeImg.gameObject.activeInHierarchy)
-        {
-            fadeImg.gameObject.SetActive(true);
+        //if (!fadeImg.gameObject.activeInHierarchy)
+	    if (!fadeImg.enabled)
+		{
+            fadeImg.enabled = true;
             fadeImg.fillAmount = 1.0f;
         }
         
@@ -254,7 +255,7 @@ public class PLayerAttack : NetworkBehaviour {
 
         if (fadeImg.fillAmount <= 0.0f)
         {
-            fadeImg.gameObject.SetActive(false);
+            fadeImg.enabled = false;
             faded = true;
         }
 
