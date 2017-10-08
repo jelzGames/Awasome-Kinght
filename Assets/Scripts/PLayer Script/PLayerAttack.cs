@@ -27,16 +27,40 @@ public class PLayerAttack : NetworkBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         playerMOve = GetComponent<PlayerMove>();
-
+        		
         var images = GameObject.FindGameObjectWithTag("UICamera").GetComponentsInChildren<Image>();
+        int count = 0;
+        foreach (Image image in images)
+		{
+            if (image.tag == "Powers")
+			{
+				switch (count)
+				{
+                    case 0:
+                        fillWaitImage_1 = image;
+                        break;
+					case 1:
+						fillWaitImage_2 = image;
+						break;
+					case 2:
+						fillWaitImage_3 = image;
+						break;
+					case 3:
+						fillWaitImage_4 = image;
+						break;
+					case 4:
+						fillWaitImage_5 = image;
+						break;
+					case 5:
+						fillWaitImage_6 = image;
+						break;
+			    }
+                image.gameObject.SetActive(false);
 
-        fillWaitImage_1 = images[0];
-        fillWaitImage_2 = images[1];
-        fillWaitImage_3 = images[2];
-        fillWaitImage_4 = images[3];
-        fillWaitImage_5 = images[4];
-        fillWaitImage_6 = images[5];
-
+				count++;
+		    }
+		}
+ 
     }
 	
 	// Update is called once per frame
@@ -101,7 +125,10 @@ public class PLayerAttack : NetworkBehaviour {
         }
         else
         {
-            anim.SetInteger("Atk", attack);
+			if (anim.IsInTransition(0) && anim.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
+			{
+				anim.SetInteger("Atk", attack);
+			}
         }
 
         //attack = 0;
@@ -140,8 +167,7 @@ public class PLayerAttack : NetworkBehaviour {
 
     public void Attack(int attack)
     {
-        bool cC = gameObject.GetComponent<NetworkIdentity>().isLocalPlayer;
-		if (!isLocalPlayer)
+       	if (!isLocalPlayer)
 		{
 			return;
 		}
@@ -158,6 +184,7 @@ public class PLayerAttack : NetworkBehaviour {
 
         }
         this.attack = 0;
+
     }
 
     void CheckToFade()

@@ -17,6 +17,7 @@ TagManager:
   - Power6
   - UICamera
   - CameraPlayer
+  - Powers
   layers:
   - Default
   - TransparentFX
